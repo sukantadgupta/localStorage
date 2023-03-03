@@ -25,9 +25,9 @@
 
 
 
-const form = document.getElementById('myForm');
+const myForm = document.getElementById('myForm');
 
-form.addEventListener('submit', function(event) {
+myForm.addEventListener('submit', function(event) {
   event.preventDefault(); // prevents the form from submitting and refreshing the page
 
   const name = document.getElementById('name').value;
@@ -46,4 +46,27 @@ form.addEventListener('submit', function(event) {
 
 
   
+});
+
+
+
+const itemsList = document.getElementById('items');
+
+myForm.addEventListener('submit', (event) => {
+  event.preventDefault(); // Prevent the form from submitting and reloading the page
+  
+  // Create a list item for each user detail and append it to the list
+  const nameItem = document.createElement('li');
+  nameItem.textContent = `Name: ${myForm.name.value}`;
+  itemsList.appendChild(nameItem);
+
+  const emailItem = document.createElement('li');
+  emailItem.textContent = `Email: ${myForm.email.value}`;
+  itemsList.appendChild(emailItem);
+
+  const phoneItem = document.createElement('li');
+  phoneItem.textContent = `Phone: ${myForm.phone.value}`;
+  itemsList.appendChild(phoneItem);
+  
+
 });
