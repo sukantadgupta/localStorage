@@ -64,7 +64,24 @@ myForm.addEventListener('submit', function(event) {
     itemsList.removeChild(detailsItem);
   }
 
+  const editItem = document.createElement('input');
+  editItem.type = "button";
+  editItem.value = "Edit";
+ 
+
+  editItem.onclick =() => {
+
+    localStorage.removeItem("userDetails");
+    itemsList.removeChild(detailsItem);
+    
+ document.getElementById('name').value = name;
+   document.getElementById('email').value = email;
+  document.getElementById('phone').value = phone;
+  }
+
   detailsItem.appendChild(deleteItem);
+  detailsItem.appendChild(editItem);
+
   itemsList.appendChild(detailsItem);
 
 
