@@ -25,6 +25,9 @@
 
 
 
+
+
+
 const myForm = document.getElementById('myForm');
 
 myForm.addEventListener('submit', function(event) {
@@ -40,33 +43,31 @@ myForm.addEventListener('submit', function(event) {
     phone: phone,
   };
   
-
   // Store the user details in local storage
   localStorage.setItem('userDetails', JSON.stringify(userDetails));
-
-
   
-});
-
-
-
-const itemsList = document.getElementById('items');
-
-myForm.addEventListener('submit', (event) => {
-  event.preventDefault(); // Prevent the form from submitting and reloading the page
+  const itemsList = document.getElementById('items');
   
-  // Create a list item for each user detail and append it to the list
-  const nameItem = document.createElement('li');
-  nameItem.textContent = `Name: ${myForm.name.value}`;
-  itemsList.appendChild(nameItem);
+  // Create a single list item for all the user details
+  const detailsItem = document.createElement('li');
+  detailsItem.textContent = `Name: ${name}, Email: ${email}, Phone: ${phone}`;
+ 
 
-  const emailItem = document.createElement('li');
-  emailItem.textContent = `Email: ${myForm.email.value}`;
-  itemsList.appendChild(emailItem);
+  const deleteItem = document.createElement('input');
+  deleteItem.type = "button";
+  deleteItem.value = "Delete";
+ 
 
-  const phoneItem = document.createElement('li');
-  phoneItem.textContent = `Phone: ${myForm.phone.value}`;
-  itemsList.appendChild(phoneItem);
-  
+  deleteItem.onclick =() => {
+
+    localStorage.removeItem("userDetails");
+    itemsList.removeChild(detailsItem);
+  }
+
+  detailsItem.appendChild(deleteItem);
+  itemsList.appendChild(detailsItem);
+
+
+
 
 });
